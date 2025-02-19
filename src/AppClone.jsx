@@ -224,7 +224,7 @@ const App = () => {
             )}
             {message.isAi && !message.isTranslation && (
                 <div className="flex bg-[#29292b] text-gray-50 gap-2 mt-2 self-end">
-                    <Select onValueChange={(value) => setSelectedLanguage(value)} defaultValue="en">
+                    <Select onValueChange={(value) => setSelectedLanguage(value)}>
                         <SelectTrigger className="bg-[#29292b] w-[100px]">
                             <SelectValue placeholder="Language" />
                         </SelectTrigger>

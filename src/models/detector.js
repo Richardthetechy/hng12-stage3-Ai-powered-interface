@@ -1,6 +1,4 @@
 const DetectLang = async (userText) => {
-    console.log(userText);
-
     try {
         const languageDetectorCapabilities = await window.ai.languageDetector.capabilities();
         const canDetect = languageDetectorCapabilities.available;
