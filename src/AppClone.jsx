@@ -147,7 +147,8 @@ const App = () => {
             let aiResponse = ''
 
             if (lang !== "en") {
-                aiResponse = await Translator(lang, 'en', userInput)
+                let aiTranslation = await Translator(lang, 'en', userInput)
+                aiResponse = await Prompt(aiTranslation)
             } else {
                 aiResponse = await Prompt(userInput)
                 if (typeof aiResponse === 'object' && aiResponse instanceof Error) {
