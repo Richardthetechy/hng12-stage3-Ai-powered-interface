@@ -29,6 +29,13 @@ const App = () => {
     const messagesEndRef = useRef(null)
     const [selectedLanguage, setSelectedLanguage] = useState("en"); // Default to English
     const [isTranslating, setIsTranslating] = useState(false);
+    const languageMap = {
+        en: "English",
+        es: "Spanish",
+        fr: "French",
+        de: "German",
+        zh: "Chinese",
+    };
     const {
         register,
         handleSubmit,
@@ -226,7 +233,7 @@ const App = () => {
                 <div className="flex bg-[#29292b] text-gray-50 gap-2 mt-2 self-end">
                     <Select onValueChange={(value) => setSelectedLanguage(value)}>
                         <SelectTrigger className="bg-[#29292b] w-[100px]">
-                            <SelectValue placeholder="Language" />
+                            <SelectValue placeholder={languageMap[selectedLanguage] || "Language"} />
                         </SelectTrigger>
                         <SelectContent>
                             <SelectItem value="en">English</SelectItem>
