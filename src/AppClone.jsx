@@ -150,6 +150,9 @@ const App = () => {
                 aiResponse = await Translator(lang, 'en', userInput)
             } else {
                 aiResponse = await Prompt(userInput)
+                if (typeof aiResponse === 'object' && aiResponse instanceof Error) {
+                    aiResponse = 'Sorry, an error occurred. Please try again.';
+                }
             }
 
             // Replace loading with actual response
