@@ -1,6 +1,6 @@
 const Translator = async (scr, dest, targetText) => {
     try {
-        const translator = await self.ai.translator.create({
+        const translator = await window.ai.translator.create({
             sourceLanguage: scr,
             targetLanguage: dest,
             monitor(m) {

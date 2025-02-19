@@ -7,17 +7,11 @@ const SummaryFunc = async (aiText) => {
     try {
 
         const available = (await window.ai.summarizer.capabilities()).available;
-        let summarizer;
         if (available === 'no') {
-            // The Summarizer API isn't usable.
-            return;
+            return "Summarization is currently unavailable.";
         }
-        if (available === 'readily') {
-            // The Summarizer API can be used immediately .
-            summarizer = await window.ai.summarizer.create(options);
-        } else {
-            // The Summarizer API can be used after the model is downloaded.
-            summarizer = await window.ai.summarizer.create(options);
+        let summarizer = await window.ai.summarizer.create(options);
+        if (available !== 'readily') {
             summarizer.addEventListener('downloadprogress', (e) => {
                 console.log(e.loaded, e.total);
             });
@@ -25,10 +19,10 @@ const SummaryFunc = async (aiText) => {
         }
         const summary = await summarizer.summarize(aiText);
         console.log("summary", summary);
-
-        return summary
+        return summary;
     } catch (e) {
-        console.log(e)
+        console.error("Summarization error:", e);
+        return "Failed to summarize. Please try again.";
     }
 }
 
