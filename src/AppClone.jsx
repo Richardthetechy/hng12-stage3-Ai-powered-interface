@@ -162,10 +162,16 @@ const App = () => {
                 }
             } catch (promptError) {
 
-                try {
-                    aiResponse = await Translator(lang, selectedLanguage, userInput);
-                } catch (translateError) {
-                    aiResponse = 'An error occurred. Please try again.';
+                if (lang === "en") {
+                    // For English input, use original text if prompt fails
+                    aiResponse = userInput;
+                } else {
+                    // For non-English, attempt translation to selected language
+                    try {
+                        aiResponse = await Translator(lang, selectedLanguage, userInput);
+                    } catch (translateError) {
+                        aiResponse = 'An error occurred. Please try again.';
+                    }
                 }
             }
 
