@@ -146,12 +146,15 @@ const App = () => {
 
             let aiResponse = ''
 
-            const processedInput = lang !== "en"
-                ? await Translator(lang, 'en', userInput)
-                : userInput;
-
-            // Get AI response
-            aiResponse = await Prompt(processedInput);
+            if (lang !== "en") {
+                let aiTranslation = await Translator(lang, 'en', userInput)
+                aiResponse = await Prompt(aiTranslation)
+            } else {
+                aiResponse = await Prompt(userInput)
+                if (typeof aiResponse === 'object' && aiResponse instanceof Error) {
+                    aiResponse = 'Sorry, an error occurred. Please try again.';
+                }
+            }
 
             // Replace loading with actual response
             setMessages(prev => prev.filter(msg => msg.id !== 'loading').concat({
