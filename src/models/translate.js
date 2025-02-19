@@ -12,7 +12,8 @@ const Translator = async (scr, dest, targetText) => {
         const result = await translator.translate(targetText);
         return result
     } catch (e) {
-        console.error(e)
+        console.error("Translation error:", e);
+        return "Translation failed. Please try again.";
     }
 }
 
