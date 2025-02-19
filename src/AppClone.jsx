@@ -185,7 +185,7 @@ const App = () => {
             <div className="flex gap-3 items-center">
                 {message.isAi && (
                     <Avatar className="h-6 w-6 self-start">
-                        <AvatarImage src="/ai-avatar.png" />
+                        <AvatarImage src="https://avatars.githubusercontent.com/u/188351179?v=4&size=64" />
                         <AvatarFallback>AI</AvatarFallback>
                     </Avatar>
                 )}
@@ -287,9 +287,6 @@ const App = () => {
                             </Button>
                         </div>
                     </form>
-                    <p className="text-center text-sm text-gray-400 mt-2">
-                        AI can make mistakes. Consider checking important information.
-                    </p>
                 </div>
             </main>
         </div>

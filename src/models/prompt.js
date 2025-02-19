@@ -9,10 +9,9 @@ async function Prompt(userPrompt) {
             return (result)
         } else {
             // Handle the case where the language model is not readily available
-            // console.warn("Language model is not readily available.");
-            // return "Language model is not readily available."; // Or return a default message
-            const session = await window.ai.languageModel.create();
-            return await session.prompt(userPrompt);
+            console.warn("Language model is not readily available.");
+            return "Language model is not readily available."; // Or return a default message
+
         }
     } catch (e) {
         console.error(e)

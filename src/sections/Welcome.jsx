@@ -7,7 +7,7 @@ import {
 
 const Welcome = () => {
     return (
-        <Alert className="w-[500px] h-[100px] bg-[#29292b] text-gray-50">
+        <Alert className="w-full max-w-[500px] h-[100px] bg-[#29292b] text-gray-50">
             <Terminal color="white" className="h-4 w-4" />
             <AlertTitle>Hey!</AlertTitle>
             <AlertDescription>
