@@ -44,7 +44,7 @@ const DetectLang = async (userText) => {
         }
     } catch (e) {
         console.error("Detector error:", e);
-        throw new Error("Detection failed");
+        return "Failed to detect language.";
     }
 }
 export default DetectLang

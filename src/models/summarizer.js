@@ -22,7 +22,7 @@ const SummaryFunc = async (aiText) => {
         return summary;
     } catch (e) {
         console.error("Summarization error:", e);
-        throw new Error("Summarization failed");
+        return "Failed to summarize. Please try again.";
     }
 }
 

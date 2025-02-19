@@ -14,7 +14,7 @@ async function Prompt(userPrompt) {
         }
     } catch (e) {
         console.error("Prompt error:", e);
-        throw new Error("Prompt failed");
+        return "Sorry, an error occurred. Please try again.";
     }
 }
 
