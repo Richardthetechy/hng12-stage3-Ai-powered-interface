@@ -120,21 +120,21 @@ const App = () => {
         const userInput = data.text.trim()
         if (!userInput) return
 
-        const lang = await DetectLang(userInput)
-
-        // Add user message
-        setMessages(prev => [...prev, {
-            id: Date.now(),
-            content: userInput,
-            isAi: false,
-            language: lang,
-            timestamp: new Date().toISOString()
-        }])
-
-        reset()
-        setIsProcessing(true)
 
         try {
+            const lang = await DetectLang(userInput)
+            if (!lang) throw new Error("Invalid language detection");
+            // Add user message
+            setMessages(prev => [...prev, {
+                id: Date.now(),
+                content: userInput,
+                isAi: false,
+                language: lang,
+                timestamp: new Date().toISOString()
+            }])
+
+            reset()
+            setIsProcessing(true)
             // Add loading indicator
             setMessages(prev => [...prev, {
                 id: 'loading',
@@ -146,15 +146,12 @@ const App = () => {
 
             let aiResponse = ''
 
-            if (lang !== "en") {
-                let aiTranslation = await Translator(lang, 'en', userInput)
-                aiResponse = await Prompt(aiTranslation)
-            } else {
-                aiResponse = await Prompt(userInput)
-                if (typeof aiResponse === 'object' && aiResponse instanceof Error) {
-                    aiResponse = 'Sorry, an error occurred. Please try again.';
-                }
-            }
+            const processedInput = lang !== "en"
+                ? await Translator(lang, 'en', userInput)
+                : userInput;
+
+            // Get AI response
+            aiResponse = await Prompt(processedInput);
 
             // Replace loading with actual response
             setMessages(prev => prev.filter(msg => msg.id !== 'loading').concat({
@@ -173,8 +170,10 @@ const App = () => {
                 timestamp: new Date().toISOString()
             }))
         }
+        finally {
 
-        setIsProcessing(false)
+            setIsProcessing(false)
+        }
     }
 
     const MessageBubble = ({ message, onSummarize, onTranslate }) => (
