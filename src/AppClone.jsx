@@ -2,9 +2,8 @@ import React, { useEffect, useRef } from 'react'
 import { Button } from "@/components/ui/button"
 import Nav from './sections/Nav'
 import './index.css'
-import { Input } from "@/components/ui/input"
 import { useForm } from "react-hook-form"
-import { Send } from 'lucide-react';
+import SendIcon from '@mui/icons-material/Send';
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { useState } from 'react'
 import Welcome from './sections/Welcome'
@@ -295,23 +294,27 @@ const App = () => {
                 </ScrollArea>
 
                 <div className="border-t border-[#333] p-4 bg-[#1b1b1f]">
-                    <form onSubmit={handleSubmit(onSubmit)} className="max-w-4xl mx-auto flex gap-2">
+                    <form onSubmit={handleSubmit(onSubmit)} className="max-w-4xl mx-auto flex items-center justify-center gap-2">
                         <div className="flex-1 flex gap-2">
-                            <Input
+                            <textarea
                                 {...register("text", { required: true })}
                                 placeholder="Type your message..."
-                                className="pr-12 bg-[#29292b] border-none rounded-2xl py-5 hover:bg-[#2e2e30] focus-visible:ring-2"
                                 disabled={isProcessing}
                                 autoComplete="off"
+                                className="p-3 pr-12 bg-[#29292b] border-none rounded-2xl py-5 hover:bg-[#2e2e30] focus-visible:ring-2 resize-y overflow-auto max-h-40 min-h-[50px] w-full"
                             />
-                            <Button
-                                type="submit"
-                                size="icon"
-                                className=" w-10 h-10 rounded-xl"
-                                disabled={isProcessing}
-                            >
-                                <Send size={20} />
-                            </Button>
+                            <div>
+                                <Button
+                                    type="submit"
+                                    size="icon"
+                                    className="h-full w-full"
+                                    disabled={isProcessing}
+                                >
+                                    <SendIcon fontSize='large'
+                                        style={{ width: "1.5rem", height: "1.5rem" }}
+                                    />
+                                </Button>
+                            </div>
                         </div>
                     </form>
                 </div>
