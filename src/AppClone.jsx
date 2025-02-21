@@ -35,6 +35,9 @@ const App = () => {
         fr: "French",
         de: "German",
         zh: "Chinese",
+        pt: "Portuguese",
+        ru: "Russian",
+        tr: "Turkish",
     };
     const {
         register,
@@ -225,7 +228,7 @@ const App = () => {
             </div>
             <div className="flex gap-5 justify-between text-xs text-gray-400">
                 {!message.isAi && (
-                    <span>Language: {message.language}</span>
+                    <span>Language: {languageMap[message.language] || message.language}</span>
                 )}
                 <span className='block'>
                     {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -253,7 +256,9 @@ const App = () => {
                             <SelectItem value="fr">French</SelectItem>
                             <SelectItem value="de">German</SelectItem>
                             <SelectItem value="zh">Chinese</SelectItem>
-
+                            <SelectItem value="pt">Portuguese</SelectItem>
+                            <SelectItem value="ru">Russian</SelectItem>
+                            <SelectItem value="tr">Turkish</SelectItem>
                         </SelectContent>
                     </Select>
                     <Button
