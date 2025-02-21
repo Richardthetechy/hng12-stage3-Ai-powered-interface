@@ -306,7 +306,6 @@ const App = () => {
                             <div>
                                 <Button
                                     type="submit"
-                                    size="icon"
                                     className="h-full w-full"
                                     disabled={isProcessing}
                                 >
